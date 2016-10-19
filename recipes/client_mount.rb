@@ -28,8 +28,8 @@ node['gluster']['client']['volumes'].each do |volume_name, volume_values|
     next
   else
     # Define a backup server for this volume, if available
-    mount_options = 'defaults,_netdev'
-    unless volume_values['backup_server'].nil?
+    mount_options = 'defaults,_netdev,rsize=1048576,wsize=1048576'
+    if volume_values['backup_server'].nil? && node['gluster']['client']['fstype']=='glusterfs'
       mount_options += ',backupvolfile-server=' + volume_values['backup_server']
     end
 
@@ -42,7 +42,7 @@ node['gluster']['client']['volumes'].each do |volume_name, volume_values|
     # Mount the partition and add to /etc/fstab
     mount volume_values['mount_point'] do
       device "#{volume_values['server']}:/#{volume_name}"
-      fstype 'glusterfs'
+      fstype node['gluster']['client']['fstype'] 
       options mount_options
       pass 0
       action [:mount, :enable]

@@ -26,5 +26,7 @@ when 'redhat', 'centos'
   default['gluster']['client']['package'] = 'glusterfs-fuse'
 end
 
+
+default['gluster']['client']['fstype'] = 'nfs'
 # Gluster volumes to mount
 default['gluster']['client']['volumes'] = {}

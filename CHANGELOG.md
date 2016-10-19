@@ -1,10 +1,13 @@
 # gluster cookbook CHANGELOG
 
-## Unreleased
+##v10.0.0
+###Forked to CSP.
+- Changed to default to nfs _this can be modified to accept attribute to swing back to glusterfs_
+- Added check for glusterfs to prevent backup server being Added
+    - NFS doesn't have concept of backup
+- Added `rsize=1048576,wsize=1048576`
 
-- **[PR #72](https://github.com/shortdudey123/chef-gluster/pull/72)** - Fix backup-volfile-server(s) in mount provider
-- **[PR #73](https://github.com/shortdudey123/chef-gluster/pull/73)** - Bump Travis ruby version to 2.3.1
-
+---
 ## v5.0.2 (2016-09-14)
 - **[PR #58](https://github.com/shortdudey123/chef-gluster/pull/58)** - Fix case statement syntax
 - **[PR #59](https://github.com/shortdudey123/chef-gluster/pull/59)** - Fix problems with volume_extend recipe
